@@ -11,7 +11,6 @@ class ContaBancaria {
     public String c= "Saldo";
     public String d = "Voltar";
     public String e = "Encerrar";
-    public String f = "Sacar valor";
     
 //DEPÓSITOS.....................................................
   public Double deposito(){     
@@ -50,9 +49,30 @@ class ContaBancaria {
     }while(valor==0||valor<0);
     if(valor>0){
         deposito();
-        avisoDeposito();
     } 
   }
+  //OPÇÃO NOVO DEPÓSITO.........................................................
+  public void NovoDeposito(){
+    System.out.printf("%n * 1 - %s%n * 4 - %s%n * 5 - %s%n",a,d,e);
+       int opc = sc.nextInt();
+       while(opc!=1 && opc!=4 && opc!=5){
+     System.out.printf(".................................%n-> ERRO..escolha uma opção abaixo:%n.................................%n");
+     System.out.printf("%n * 1 - %s%n * 4 - %s%n * 5 - %s%n",a,d,e);
+     System.out.print(" -> ");
+     opc = sc.nextInt();
+    }
+    if(opc==1){
+      while(opc==1){
+        depositar();
+        avisoDeposito();
+        NovoDeposito();
+      }            
+    }else if(opc==4){
+      escolha();
+  }else{
+    encerraPrograma();
+  }
+} 
   
 //OPÇÃO SAQUE-DÉBITO.............................................
   public void debitando(){     
@@ -70,11 +90,11 @@ class ContaBancaria {
     }while(valor==0||valor<0);
     if(valor>saldo){        
       System.out.printf("............................%n('_') Saldo insuficiente.%n............................%n");  
-        opc4e5();      
+        voltarEncerrar();      
     }else if(valor>0 && valor<=saldo){
         debito();
         avisoSaque();
-        opc4e5();
+        voltarEncerrar();
     } 
   }
   
@@ -85,7 +105,7 @@ class ContaBancaria {
 
 
   //OPÇÃO VOLTAR OU ENCERRAR.......................................
-  public void opc4e5(){
+  public void voltarEncerrar(){
      System.out.printf("%n * 4 - %s%n * 5 - %s%n",d,e);
      int opc = sc.nextInt();
      while(opc!=4 && opc!=5){
@@ -97,31 +117,31 @@ class ContaBancaria {
     if(opc==4){
       escolha();       
     }else{
-      opc5();
+      encerraPrograma();
     }
   }
-
-  //OPÇÃO - VOLTAR - ENCERRAR - SACAR.................................. 
-  public void opc4_5_6(){
-    System.out.printf("%n * 4 - %s%n * 5 - %s%n * 6 - %s%n",d,e,f);
+  
+  //OPÇÃO FAZER UM SAQUE - VOLTAR- ENCERRAR.................................. 
+  public void saqueVoltaEncerra(){
+    System.out.printf("%n * 2 - %s%n * 4 - %s%n * 5- %s%n",b,d,e);
        int opc = sc.nextInt();
-       while(opc!=4 && opc!=5 && opc!=6){
+       while(opc!=2 && opc!=4 && opc!=5){
      System.out.printf(".................................%n-> ERRO..escolha uma opção abaixo:%n.................................%n");
-     System.out.printf("%n * 4 - %s%n * 5 - %s%n * 6 - %s%n",d,e,f);
+     System.out.printf("%n * 2 - %s%n * 4 - %s%n * 5 - %s%n",b,d,e);
      System.out.print(" -> ");
      opc = sc.nextInt();
     }
-    if(opc==4){
-      escolha();
-    }else if(opc==6){
-      debitando();      
+    if(opc==2){
+      debitando(); 
+    }else if(opc==4){
+      escolha();      
   }else{
-    opc5();
+    encerraPrograma();
   }
 } 
   
 //OPÇÃO - ENCERRAMENTO PROGRAMA.....................................
-  public void opc5(){
+  public void encerraPrograma(){
     System.out.printf("%n ........: SISTEMA ENCERRADO :........%n");
     System.out.println("-> Para usar novamente clique em 'Run' <-");
     System.out.println("----------------------------------------");
@@ -153,7 +173,7 @@ class ContaBancaria {
             case 1:
                 depositar();
                 avisoDeposito();
-                opc4e5();
+                NovoDeposito();
                 break;
 //SAQUE/ DÉBITO..................................
             case 2:
@@ -163,7 +183,7 @@ class ContaBancaria {
 //SALDO/EXTRATO..................................
             case 3:
                extrato();
-               opc4_5_6();
+               saqueVoltaEncerra();
             break;
 //VOLTAR..................................
             case 4:
@@ -171,7 +191,7 @@ class ContaBancaria {
                 break;
 //ENCERRAMENTO..................................
             case 5:
-              opc5();
+             encerraPrograma();
                break;  
 //CORREÇÃO..................................
             default:   
