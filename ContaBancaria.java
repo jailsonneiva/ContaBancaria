@@ -46,14 +46,10 @@ class ContaBancaria {
         System.out.printf("DIGITE O VALOR DE DEPÓSITO -> R$ ");       
         valor = sc.nextDouble();
       }      
-    }while(valor==0||valor<0);
+    }while(valor==0||valor<0);    
     if(valor>0){
-        deposito();
-    } 
-  }
-  //OPÇÃO NOVO DEPÓSITO.........................................................
-  public void NovoDeposito(){
-    System.out.printf("%n * 1 - %s%n * 4 - %s%n * 5 - %s%n",a,d,e);
+      deposito();
+      System.out.printf("%n * 1 - %s%n * 4 - %s%n * 5 - %s%n",a,d,e);
        int opc = sc.nextInt();
        while(opc!=1 && opc!=4 && opc!=5){
      System.out.printf(".................................%n-> ERRO..escolha uma opção abaixo:%n.................................%n");
@@ -62,18 +58,18 @@ class ContaBancaria {
      opc = sc.nextInt();
     }
     if(opc==1){
-      while(opc==1){
+      do{
         depositar();
-        avisoDeposito();
-        NovoDeposito();
-      }            
+      }while(opc==1);      
     }else if(opc==4){
       escolha();
   }else{
     encerraPrograma();
   }
-} 
-  
+    } 
+    
+  }
+   
 //OPÇÃO SAQUE-DÉBITO.............................................
   public void debitando(){     
     System.out.printf("DIGITE O VALOR DO SAQUE -> R$ ");
@@ -171,9 +167,7 @@ class ContaBancaria {
         switch (opc) {
 //DEPÓSITO.............................
             case 1:
-                depositar();
-                avisoDeposito();
-                NovoDeposito();
+                depositar();              
                 break;
 //SAQUE/ DÉBITO..................................
             case 2:
