@@ -7,7 +7,6 @@ public class Main {
       System.out.println("----------------------------------------------------");
         System.out.println(" \n " + "  ........ SALDO INICIAL -> R$ "+conta.getSaldo()+" ........");
       System.out.println("----------------------------------------------------");
-        conta.escolha();        
-             
+        conta.escolha();     
     }
 }
