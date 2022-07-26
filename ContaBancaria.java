@@ -152,7 +152,7 @@ class ContaBancaria {
                   debito();
                   saqueRealizado();
                   opcaoVoltarEncerrar();
-                }else{
+                }else if(opc==2){
                   System.out.println("Você escolheu a opção 2 - 'Não'");
                   System.out.println("...............................");
                   System.out.println("('_') * SAQUE CANCELADO *");
@@ -160,6 +160,17 @@ class ContaBancaria {
                   opcaoVoltarEncerrar();
                 }  
             }
+            if(opc==1){
+                  System.out.println("Você escolheu a opção 1 - 'Sim'");
+                  saldo-=valor*0.1;        
+                  debito();
+                  saqueRealizado();
+                }else if(opc==2){
+                  System.out.println("Você escolheu a opção 2 - 'Não'");
+                  System.out.println("...............................");
+                  System.out.println("('_') * SAQUE CANCELADO *");
+                  System.out.println("...............................");
+            }  
         }
     System.out.println("Para continuar ou encerrar escolha uma opção:");
     opcaoVoltarEncerrar();
