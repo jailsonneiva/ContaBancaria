@@ -12,6 +12,6 @@ public class Main {
         System.out.println("--------------------------------------");
         System.out.printf("Você tem um saldo inicial -> R$ %.2f%n",conta.getSaldo());
         System.out.println("--------------------------------------");
-        conta.escolha();     
+        conta.Menu();     
     }
 }

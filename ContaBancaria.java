@@ -50,6 +50,7 @@ class ContaBancaria {
               valor = sc.nextDouble();
               if(valor>0){
                   depositoRealizado();
+                  MenuDepositar();
               }
             }else if(valor<0){
                 System.out.println(".........................................................");
@@ -59,11 +60,13 @@ class ContaBancaria {
                 valor = sc.nextDouble();
                 if(valor>0){
                     depositoRealizado();
+                    MenuDepositar();
                 }
             }
         }                
     }else if(valor>0){
         depositoRealizado();
+        MenuDepositar();
     }
   }
 
@@ -77,19 +80,19 @@ class ContaBancaria {
         System.out.printf("### [ SALDO INSUFICIENTE ] ###%n");
         System.out.println(".....................................");
         System.out.println("Para continuar ou encerrar escolha uma opção:");
-        voltarEncerrar(); 
+        opcaoVoltarEncerrar(); 
     }else if(valor==0 || valor<0){    
         if(valor==0){
             System.out.println("...........................................");
             System.out.printf("[..ERRO..]%nDigite um valor maior que zero.%n");
             System.out.println("...........................................");
-            voltarEncerrar();
+            opcaoVoltarEncerrar();
         }else if(valor<0){  
             System.out.println("...................................................");
             System.out.println("[..ERRO..] -> NÚMERO INVÁLIDO");
             System.out.println("...................................................");
             System.out.println("Para continuar ou encerrar escolha uma opção:");
-            voltarEncerrar();
+            opcaoVoltarEncerrar();
         }
     }else if(valor>0 && valor<=saldo){
         if(valor<=50){ 
@@ -117,7 +120,7 @@ class ContaBancaria {
             }  
         }
     System.out.println("Para continuar ou encerrar escolha uma opção:");
-    saqueVoltaEncerra();
+    opcaoVoltarEncerrar();
     } 
 }
 
@@ -126,25 +129,6 @@ class ContaBancaria {
     System.out.println(".............................................");
     System.out.println("('_') * DEPÓSITO REALIZADO COM SUCESSO");
     System.out.println(".............................................");
-    System.out.println("Para continuar ou encerrar escolha uma opção:");
-    System.out.printf(" * 1 - %s%n * 3 - %s%n * 4 - %s%n * 5 - %s%n",a,c,d,e);
-    int opc = sc.nextInt();
-    if(opc!=1 && opc!=3 && opc!=4 && opc!=5){
-        while(opc!=1 && opc!=3 && opc!=4 && opc!=5){
-            erroOpcao();
-            System.out.printf("%n * 1 - %s%n * 3 - %s%n * 4 - %s%n * 5 - %s%n",a,c,d,e);
-            System.out.print(" -> ");
-            opc = sc.nextInt();
-        }
-    }else if(opc==1){
-        depositar();
-    }else if(opc==3){
-        extrato();
-    }else if(opc==4){
-        escolha();
-    }else{
-        encerraPrograma();
-    } 
   } 
 
   public void saqueRealizado(){ //Saque realizado.....
@@ -165,7 +149,8 @@ class ContaBancaria {
             System.out.println("..............................................");
   }
 
-  public void extrato(){ //Saldo............
+  public void Saldo(){ //Saldo............
+    System.out.println("..............................................");
     System.out.printf("Você escolheu a opção 3 - %s%n",c);
     System.out.println("..............................................");
     System.out.printf("-> O SALDO ATUAL = R$ %.2f%n",getSaldo());
@@ -174,7 +159,7 @@ class ContaBancaria {
     System.out.printf(" * 1 - %s%n * 2 - %s%n * 4 - %s%n * 5 - %s%n",a,b,d,e);
     int opc = sc.nextInt();
        while(opc!=1 && opc!=2 && opc!=4 && opc!=5){
-            erroOpcao();
+            Erro();
             System.out.printf(" * 1 - %s%n * 2 - %s%n * 4 - %s%n * 5 - %s%n",a,b,d,e);
             System.out.print(" -> ");
             opc = sc.nextInt();
@@ -188,7 +173,7 @@ class ContaBancaria {
                 debitando();
                 break;
             case 4:
-                escolha();
+                Menu();
                 break;
             case 5:
                 encerraPrograma();
@@ -199,47 +184,42 @@ class ContaBancaria {
         }
   } 
   
-  protected void erroOpcao(){ //erro digitação...........
+  public void MenuDepositar(){ // opção restauração menu depositar
+    System.out.println("Para continuar ou encerrar escolha uma opção:");
+    System.out.printf(" * 1 - %s%n * 3 - %s%n * 4 - %s%n * 5 - %s%n",a,c,d,e);
+    int opc = sc.nextInt();
+      while(opc!=1 && opc!=3 && opc!=4 && opc!=5){
+          if(opc!=1 && opc!=3 && opc!=4 && opc!=5){
+              Erro();
+              System.out.printf("%n * 1 - %s%n * 3 - %s%n * 4 - %s%n * 5 - %s%n",a,c,d,e);
+              System.out.print(" -> ");
+              opc = sc.nextInt();
+          }else if(opc==1){
+              depositar();
+          }else if(opc==3){
+              Saldo();
+          }else if(opc==4){
+              Menu();
+          }else{
+              encerraPrograma();
+          } 
+      }
+      if(opc==1){
+          depositar();
+      }else if(opc==3){
+          Saldo();
+      }else if(opc==4){
+          Menu();
+      }else{
+          encerraPrograma();
+      } 
+  } 
+  
+  protected void Erro(){ //erro digitação...........
     System.out.println("..........................................");
     System.out.printf("[..ERRO..]%n -> Escolha a opção correta:%n");
-    System.out.println(".........................................."); 
+    System.out.println("..........................................");
   }
-  
-  public void voltarEncerrar(){ //voltar - encerrar.......
-     System.out.printf(" * 4 - %s%n * 5 - %s%n",d,e);
-     int opc = sc.nextInt();
-     while(opc!=4 && opc!=5){
-     erroOpcao();
-     System.out.printf(" * 4 - %s%n * 5 - %s%n",d,e);
-     System.out.print(" -> ");
-     opc = sc.nextInt();
-     System.out.println(".................................");
-    }
-    if(opc==4){
-      escolha();
-    }else{        
-      encerraPrograma();
-    }
-  }
-
-  public void saqueVoltaEncerra(){ //fazer um saque e voltar....
-    System.out.printf(" * 2 - %s%n * 4 - %s%n * 5 - %s%n",b,d,e);
-    int opc = sc.nextInt();
-    while(opc!=2 && opc!=4 && opc!=5){
-    erroOpcao();
-    System.out.printf(" * 2 - %s%n * 4 - %s%n * 5 - %s%n",b,d,e);
-    System.out.print(" -> ");
-    opc = sc.nextInt();
-    System.out.println(".................................");
-    }
-    if(opc==2){
-      debitando();
-    }else if(opc==4){
-      escolha();
-    }else{        
-      encerraPrograma();
-    }
-  } 
   
   public void encerraPrograma(){ //encerramento programa......
     System.out.println("-------------------------------------------");
@@ -249,47 +229,60 @@ class ContaBancaria {
   }
   
  //..................MENU PRINCIPAL..................................
-  public void escolha(){
-    System.out.println("MENU PRINCIPAL");
+  public void Menu(){
+    System.out.println("ESCOLHA UMA OPÇÃO");
     System.out.println("...............................");
     System.out.printf("* 1 - %s%n* 2 - %s%n* 3 - %s%n* 5 - %s%n",a,b,c,e);
     opc = sc.nextInt();        
     if(opc!=1 && opc!=2 && opc!=3 && opc!=5){
-        while(opc!=1 && opc!=2 && opc!=3 && opc!=5){
-            erroOpcao();
+        do{
+            Erro();
             System.out.printf("* 1 - %s%n* 2 - %s%n* 3 - %s%n* 5 - %s%n",a,b,c,e);
             opc = sc.nextInt();
             System.out.println(".................................");
-        }
-    }else{
+        }while(opc!=1 && opc!=2 && opc!=3 && opc!=5);
+    }else if(opc==1 || opc==2 || opc==3 || opc==5){
         switch (opc){
-            //DEPÓSITO.......................................
-            case 1:
-               depositar();              
-            break;
-            //SAQUE/ DÉBITO..................................
-            case 2:
-               debitando();              
-            break;        
-            //SALDO/EXTRATO..................................
-            case 3:
-               extrato();
-            break;
-            //VOLTAR..........................................
-            case 4:
-               escolha();
-            break;
-            //ENCERRAMENTO....................................
-            case 5:   
-              encerraPrograma();
-              sc.close();
-            break;
-            //padrão....................................            
-            default:   
-                System.out.println("Sistema instável.Tente mais tarde");
-            break; 
-        } 
+          //DEPÓSITO.......................................
+          case 1:
+             depositar();              
+          break;
+          //SAQUE/ DÉBITO..................................
+          case 2:
+             debitando();              
+          break;        
+          //SALDO/EXTRATO..................................
+          case 3:
+             Saldo();
+          break;              
+          //ENCERRAMENTO....................................
+          case 5:   
+            encerraPrograma();
+            sc.close();
+          break;
+          //padrão....................................            
+          default:   
+              System.out.println("Sistema instável.Tente mais tarde");
+          break;
+        }
     } 
   } 
-} 
- 
+
+public void opcaoVoltarEncerrar(){//voltar - encerrar.......
+   System.out.printf(" * 4 - %s%n * 5 - %s%n",d,e);
+   int opc = sc.nextInt();
+   while(opc!=4 && opc!=5){
+       Erro();
+       System.out.printf(" * 4 - %s%n * 5 - %s%n",d,e);
+       System.out.print(" -> ");
+       opc = sc.nextInt();
+       System.out.println(".................................");
+       if(opc==4){
+         Menu();
+       }
+   }
+    if(opc==5){        
+     encerraPrograma();
+   }
+  }
+}
