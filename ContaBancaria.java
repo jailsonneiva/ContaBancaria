@@ -218,9 +218,9 @@ class ContaBancaria {
             System.out.println("***** ATENÇÃO *****");
             System.out.println("PARA SAQUES ACIMA DE R$ 50,00");
             System.out.println("SERÁ COBRADO UMA TARIFA DE 10%");
-            System.out.println("DESEJA CONTINUAR?");                                           
+            System.out.println("DESEJA CONTINUAR?");
             System.out.println("....................................");        
-            System.out.println("DIGITE '1' PARA SACAR E '2' PARA CANCELAR");
+            System.out.println("Digite '1' para sacar e '2' para cancelar");
             opc=sc.nextInt();
             System.out.println("..............................................");
   }
