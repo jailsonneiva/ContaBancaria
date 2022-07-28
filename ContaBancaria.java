@@ -1,4 +1,5 @@
 import java.util.*;
+
 class ContaBancaria {
     Scanner sc = new Scanner(System.in);    
     private double saldo = 100.00;
@@ -109,7 +110,7 @@ class ContaBancaria {
               valor = sc.nextDouble();
               if(valor>0){
                   depositoRealizado();
-                  MenuDepositar();
+                  Menu();
               }
             }else if(valor<0){
                 System.out.println(".........................................................");
@@ -119,13 +120,13 @@ class ContaBancaria {
                 valor = sc.nextDouble();
                 if(valor>0){
                     depositoRealizado();
-                    MenuDepositar();
+                    Menu();
                 }
             }
         }                
     }else if(valor>0){
         depositoRealizado();
-        MenuDepositar();
+        Menu();
     }
   }
 
@@ -169,7 +170,7 @@ class ContaBancaria {
             if(opc==1){
           System.out.println("Você escolheu a opção 1 - 'Sacar'");
         saldo-=valor*0.1;        
-      debito();
+     debito();
     saqueRealizado();
       opcaoVoltarEncerrar();
         }else if(opc==2){
@@ -303,16 +304,21 @@ public void opcaoVoltarEncerrar(){ //voltar - encerrar..................
         int opc = sc.nextInt();
           if (opc!=4 && opc!=5){
             while(opc!=4 && opc!=5){
-               Erro();
-                System.out.printf(" * 4 - %s%n * 5 - %s%n",d,e);
-                System.out.print(" -> ");
-                opc = sc.nextInt();
-              }
+              Erro();
+            System.out.printf(" * 4 - %s%n * 5 - %s%n",d,e);
+          System.out.print(" -> ");
+        opc = sc.nextInt();
+      if(opc==4){
+    Menu();
+      }else if(opc==5){        
+        encerraPrograma();
+          }
+            }
             }else if(opc==4){
-          Menu();
-        }else if(opc==5){        
-      encerraPrograma();
-    }
+              Menu();
+            }else if(opc==5){        
+          encerraPrograma();
+      }
   }
   
   public void encerraPrograma(){ //encerramento programa..................
