@@ -1,9 +1,14 @@
-import java.util.*;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.NumberFormat;
+import java.util.Locale;
+import java.util.Scanner;
 
 class ContaBancaria {
-    Scanner sc = new Scanner(System.in);    
-    private double saldo = 100.00;
+    Scanner sc = new Scanner(System.in); 
     protected double valor;
+    private String resto;
+    private double saldo = 100;
     public int opc;
     public String a = "Depósito";
     public String b = "Saque";    
@@ -11,6 +16,15 @@ class ContaBancaria {
     public String d = "Voltar";
     public String e = "Encerrar";
     protected String nome;
+
+      public String decimal(){
+      DecimalFormatSymbols dfs = new DecimalFormatSymbols();
+      dfs.setDecimalSeparator(',');
+      dfs.setGroupingSeparator('.');
+      DecimalFormat decimalFormat = new DecimalFormat("#,##0.00", dfs);
+      return resto = decimalFormat.format(getSaldo());
+      }
+      
   
   public void insiraNome(){ //inserindo o nome usuário.....
       System.out.print("Digite seu nome: ");
@@ -94,6 +108,41 @@ class ContaBancaria {
           break;
         }
     } 
+  } 
+
+  public void Saldo(){ //Saldo............
+    System.out.println("..............................................");
+    System.out.printf("Você escolheu a opção 3 - %s%n",c);
+    System.out.println("..............................................");
+    System.out.printf("-> O SALDO ATUAL = R$ %s%n" ,decimal());
+    System.out.println("..............................................");
+    System.out.println("Para continuar ou encerrar escolha uma opção:");
+    System.out.printf(" * 1 - %s%n * 2 - %s%n * 4 - %s%n * 5 - %s%n",a,b,d,e);
+    int opc = sc.nextInt();
+       while(opc!=1 && opc!=2 && opc!=4 && opc!=5){
+            Erro();
+            System.out.printf(" * 1 - %s%n * 2 - %s%n * 4 - %s%n * 5 - %s%n",a,b,d,e);
+            System.out.print(" -> ");
+            opc = sc.nextInt();
+            System.out.println(".................................");
+        }
+        switch (opc) {
+            case 1:
+                depositar();
+                break;
+            case 2:
+                debitando();
+                break;
+            case 4:
+                Menu();
+                break;
+            case 5:
+                encerraPrograma();
+                break;
+            default:
+                System.out.println("Programa encerrado");
+                break;
+        }
   } 
 
   public void depositar(){ //efetuando depósito....................
@@ -225,41 +274,6 @@ class ContaBancaria {
             opc=sc.nextInt();
             System.out.println("..............................................");
   }
-
-  public void Saldo(){ //Saldo............
-    System.out.println("..............................................");
-    System.out.printf("Você escolheu a opção 3 - %s%n",c);
-    System.out.println("..............................................");
-    System.out.printf("-> O SALDO ATUAL = R$ %.2f%n",getSaldo());
-    System.out.println("..............................................");
-    System.out.println("Para continuar ou encerrar escolha uma opção:");
-    System.out.printf(" * 1 - %s%n * 2 - %s%n * 4 - %s%n * 5 - %s%n",a,b,d,e);
-    int opc = sc.nextInt();
-       while(opc!=1 && opc!=2 && opc!=4 && opc!=5){
-            Erro();
-            System.out.printf(" * 1 - %s%n * 2 - %s%n * 4 - %s%n * 5 - %s%n",a,b,d,e);
-            System.out.print(" -> ");
-            opc = sc.nextInt();
-            System.out.println(".................................");
-        }
-        switch (opc) {
-            case 1:
-                depositar();
-                break;
-            case 2:
-                debitando();
-                break;
-            case 4:
-                Menu();
-                break;
-            case 5:
-                encerraPrograma();
-                break;
-            default:
-                System.out.println("Programa encerrado");
-                break;
-        }
-  } 
   
   public void MenuDepositar(){ // opção restauração menu depositar
     System.out.println("Para continuar ou encerrar escolha uma opção:");
