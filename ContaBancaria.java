@@ -1,8 +1,8 @@
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
-import java.text.NumberFormat;
-import java.util.Locale;
-import java.util.Scanner;
+  import java.math.BigDecimal;
+  import java.text.DecimalFormat;
+  import java.text.DecimalFormatSymbols;
+  import java.util.Locale;
+  import java.util.Scanner;
 
 class ContaBancaria {
     Scanner sc = new Scanner(System.in); 
@@ -16,24 +16,23 @@ class ContaBancaria {
     public String d = "Voltar";
     public String e = "Encerrar";
     protected String nome;
-
-      public String decimal(){
+    
+    
+      String decimal(){
+      BigDecimal bd = new BigDecimal(getSaldo());
       DecimalFormatSymbols dfs = new DecimalFormatSymbols();
       dfs.setDecimalSeparator(',');
       dfs.setGroupingSeparator('.');
       DecimalFormat decimalFormat = new DecimalFormat("#,##0.00", dfs);
-      return resto = decimalFormat.format(getSaldo());
-      }
-      
+      return resto = decimalFormat.format(bd);
+   }
   
-  public void insiraNome(){ //inserindo o nome usuário.....
+  public String insiraNome(){ //inserindo o nome usuário.....
       System.out.print("Digite seu nome: ");
-      nome=sc.nextLine().toUpperCase();
+      nome = sc.nextLine().toUpperCase();
+        return nome;
+      
   }
- 
-  public String getInsiraNome(){ //recebe nome usuário.....
-      return nome;
-  } 
 
   public Double deposito(){ //depósito.........   
       return saldo+=valor;
@@ -64,25 +63,25 @@ class ContaBancaria {
             opc = sc.nextInt();
             if(opc==1 || opc==2 || opc==3 || opc==5){
                 switch (opc){
-                 //DEPÓSITO.......................................
-                 case 1:
+                 
+                 case 1: //DEPÓSITO.........................
                     depositar();              
                  break;
-                 //SAQUE/ DÉBITO..................................
-                 case 2:
+                 
+                 case 2: //SAQUE/ DÉBITO....................
                     debitando();              
                  break;        
-                 //SALDO/EXTRATO..................................
-                 case 3:
+                 
+                 case 3: //SALDO/EXTRATO....................
                     Saldo();
                  break;              
-                 //ENCERRAMENTO....................................
-                 case 5:   
+                 
+                 case 5: //ENCERRAMENTO..................... 
                    encerraPrograma();
                    sc.close();
                  break;
-                 //padrão....................................            
-                 default:   
+                           
+                 default: //padrão..........................    
                      System.out.println("Sistema instável.Tente mais tarde");
                  break;
                }  
