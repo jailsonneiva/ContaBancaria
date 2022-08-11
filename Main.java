@@ -1,7 +1,8 @@
 
+
 public class Main {
      
-    public static void main(String[] args) {
+    public static void main(String[] args){
       
   ContaBancaria conta = new ContaBancaria();
     conta.insiraNome();
@@ -12,7 +13,8 @@ public class Main {
         System.out.println("--------------------------------------");
         System.out.printf("Você tem um saldo inicial -> R$ %s%n",conta.decimal());
         System.out.println("--------------------------------------");
-        conta.Menu();
+      conta.Menu();
+            
     }
   
 }
