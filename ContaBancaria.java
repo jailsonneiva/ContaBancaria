@@ -55,12 +55,8 @@ public void Menu(){
     System.out.println("...............................");
       System.out.printf("* 1 - %s%n* 2 - %s%n* 3 - %s%n* 5 - %s%n", a, b, c, e);
       opc = sc.nextInt();
-  consertoMenu();
 
-}
-  
-  public void consertoMenu() {
-    if (opc != 1 && opc != 2 && opc != 3 && opc != 5) {
+  if (opc != 1 && opc != 2 && opc != 3 && opc != 5) {
       while (opc != 1 && opc != 2 && opc != 3 && opc != 5) {
         Erro();
         System.out.printf("* 1 - %s%n* 2 - %s%n* 3 - %s%n* 5 - %s%n", a, b, c, e);
@@ -111,7 +107,7 @@ public void Menu(){
           break;
       }
     }
-  }
+}
 
   public void Saldo() { // Saldo............
     System.out.println("..............................................");
